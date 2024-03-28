@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import Field from "../common/Field";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -10,6 +12,7 @@ const LoginForm = () => {
 
   const submitForm = (formData) => {
     console.log(formData);
+    navigate("/");
   };
   return (
     <form
@@ -17,7 +20,7 @@ const LoginForm = () => {
       onSubmit={handleSubmit(submitForm)}
     >
       {/* email input field  */}
-      <Field label="Email">
+      <Field label="Email" error={errors.email}>
         <input
           className={`auth-input ${
             errors.email ? "border-red-500" : "border-gray-200"
